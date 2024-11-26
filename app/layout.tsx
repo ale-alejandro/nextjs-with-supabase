@@ -32,6 +32,29 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+           <head>
+           <script>
+              (function (m, a, z, e) {
+                var s, t;
+                try {
+                  t = m.sessionStorage.getItem('maze-us');
+                } catch (err) {}
+
+                if (!t) {
+                  t = new Date().getTime();
+                  try {
+                    m.sessionStorage.setItem('maze-us', t);
+                  } catch (err) {}
+                }
+
+                s = a.createElement('script');
+                s.src = z + '?apiKey=' + e;
+                s.async = true;
+                a.getElementsByTagName('head')[0].appendChild(s);
+                m.mazeUniversalSnippetApiKey = e;
+              })(window, document, 'https://snippet.maze.co/maze-universal-loader.js', 'aecb3012-78bc-4270-8dc0-4c3fcc02996c');
+          </script>
+          </head>
           <main className="min-h-screen flex flex-col items-center">
             <div className="flex-1 w-full flex flex-col gap-20 items-center">
               <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
